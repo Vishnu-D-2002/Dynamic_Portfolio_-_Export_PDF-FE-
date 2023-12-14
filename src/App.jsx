@@ -7,6 +7,10 @@ import ResetPassword from './components/ResetPassword'
 import EmailSend from './components/EmailSend'
 import Activated from './components/Activated'
 import './App.css';
+import Additional from './pages/Additional'
+import StudentDetail from './pages/StudentDetail'
+import PersonalDetail from './pages/PersonalDetail'
+import Education from './pages/Education'
 
 function App() {
   return (
@@ -20,6 +24,10 @@ function App() {
             <Route path='/emailSend' element={ <EmailSend /> } />
             <Route path='/resetPassword/:randomString' element={<ResetPassword />} />
             <Route path='/activate/:activationToken' element={<Activated />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/additional" element={<Additional />} />
+            <Route path="/student" element={<StudentDetail />} />
+            <Route path="/personal" element={<PersonalDetail />} />
           </Routes>
         </div>
       </Router>
