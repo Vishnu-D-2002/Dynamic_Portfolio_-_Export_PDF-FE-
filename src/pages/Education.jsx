@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Education = () => {
-  const [educationDetails, setEducationDetails] = useState({
+  const initialData = JSON.parse(sessionStorage.getItem('educationDetails')) || {
     college: { collegeName: '', qualification: '', cgpa: '', passedOutYear: '' },
     twelfth: { schoolName: '', board: '', percentage: '', passedOutYear: '' },
     tenth: { schoolName: '', board: '', percentage: '', passedOutYear: '' },
-  });
+  };
 
+  const [educationDetails, setEducationDetails] = useState(initialData);
   const navigate = useNavigate();
+  const collegeRef = useRef(null);
+
+  useEffect(() => {
+    if (collegeRef.current) {
+      collegeRef.current.focus();
+    }
+  }, []);
 
   const handleInputChange = (section, field, value) => {
     setEducationDetails((prevDetails) => ({
@@ -26,21 +34,22 @@ const Education = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <h2>College Details</h2>
+        <h1>College Details</h1>
         {Object.entries(educationDetails.college).map(([field, value], index) => (
           <input
             key={index}
-            type={field === 'cgpa' || field === 'percentage' || field=== 'passedOutYear' ? 'number' : 'text'}
+            type={field === 'cgpa' || field === 'percentage' || field === 'passedOutYear' ? 'number' : 'text'}
             placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
             value={value}
             onChange={(e) => handleInputChange('college', field, e.target.value)}
             required
+            ref={index === 0 ? collegeRef : null}
           />
         ))}
       </div>
 
       <div>
-        <h2>12th Grade Details</h2>
+        <h1>12th Grade Details</h1>
         {Object.entries(educationDetails.twelfth).map(([field, value], index) => (
           <input
             key={index}
@@ -54,7 +63,7 @@ const Education = () => {
       </div>
 
       <div>
-        <h2>10th Grade Details</h2>
+        <h1>10th Grade Details</h1>
         {Object.entries(educationDetails.tenth).map(([field, value], index) => (
           <input
             key={index}
@@ -66,7 +75,7 @@ const Education = () => {
           />
         ))}
       </div>
-      <button onClick={()=>navigate('/student')}>Previous</button>
+      <button onClick={() => navigate('/student')}>Previous</button>
       <button type="submit">Next</button>
     </form>
   );

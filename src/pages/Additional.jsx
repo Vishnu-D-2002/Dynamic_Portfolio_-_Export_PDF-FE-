@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Additional = () => {
-  const [formData, setFormData] = useState({
+  const initialData = JSON.parse(sessionStorage.getItem('additionalDetails')) || {
     skills1: '',
     skills2: '',
     skills3: '',
@@ -19,9 +19,17 @@ const Additional = () => {
     personalSkill3: '',
     personalSkill4: '',
     personalSkill5: '',
-  });
+  };
 
+  const [formData, setFormData] = useState(initialData);
   const navigate = useNavigate();
+  const firstInputRef = useRef(null);
+
+  useEffect(() => {
+    if (firstInputRef.current) {
+      firstInputRef.current.focus();
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,22 +47,38 @@ const Additional = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {['skills', 'areaOfInterest', 'personalSkill'].map((category) => (
-        [...Array(5)].map((_, index) => (
-          <div key={index}>
-            <label htmlFor={`${category}${index + 1}`}>{`${category.charAt(0).toUpperCase()}${category.slice(1)} ${index + 1} ${index < 2 ? '*' : ''}`}</label>
-            <input
-              type="text"
-              id={`${category}${index + 1}`}
-              name={`${category}${index + 1}`}
-              // placeholder={`${category.charAt(0).toUpperCase()}${category.slice(1)} ${index + 1}`}
-              value={formData[`${category}${index + 1}`]}
-              onChange={handleInputChange}
-              required={index < 2}
-            />
-          </div>
-        ))
-      ))}
+      <div>
+        <label htmlFor='skills'>Programming Languages *</label>
+        {[...Array(5)].map((_, index) => (
+          <input
+            key={index}
+            type="text"
+            id={`skills${index + 1}`}
+            name={`skills${index + 1}`}
+            placeholder={`Language ${index + 1} ${index < 2 ? '*' : ''}`}
+            value={formData[`skills${index + 1}`]}
+            onChange={handleInputChange}
+            required={index < 2}
+            ref={index === 0 ? firstInputRef : null}
+          />
+        ))}
+      </div>
+
+      <div>
+        <label htmlFor='areaOfInterest'>Area of Interest *</label>
+        {[...Array(5)].map((_, index) => (
+          <input
+            key={index}
+            type="text"
+            id={`areaOfInterest${index + 1}`}
+            name={`areaOfInterest${index + 1}`}
+            placeholder={`Area of Interest ${index + 1} ${index < 2 ? '*' : ''}`}
+            value={formData[`areaOfInterest${index + 1}`]}
+            onChange={handleInputChange}
+            required={index < 2}
+          />
+        ))}
+      </div>
 
       <div>
         <label htmlFor='careerObjective'>Career Objective *</label>
@@ -62,12 +86,30 @@ const Additional = () => {
           type="text"
           id="careerObjective"
           name="careerObjective"
+          placeholder="Career Objective *"
           value={formData.careerObjective}
           onChange={handleInputChange}
           required
         />
       </div>
-      <button onClick={()=>navigate('/education')}>Previous</button>
+
+      <div>
+        <label htmlFor='personalSkills'>Personal Skills *</label>
+        {[...Array(5)].map((_, index) => (
+          <input
+            key={index}
+            type="text"
+            id={`personalSkill${index + 1}`}
+            name={`personalSkill${index + 1}`}
+            placeholder={`Personal Skill ${index + 1} ${index < 2 ? '*' : ''}`}
+            value={formData[`personalSkill${index + 1}`]}
+            onChange={handleInputChange}
+            required={index < 2}
+          />
+        ))}
+      </div>
+
+      <button onClick={() => navigate('/education')}>Previous</button>
       <button type="submit">Next</button>
     </form>
   );

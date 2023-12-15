@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PersonalDetail = () => {
-  const [formData, setFormData] = useState({
+  const initialData = JSON.parse(sessionStorage.getItem('personalDetails')) || {
     fathersName: '',
     dob: '',
     gender: '',
@@ -9,7 +10,19 @@ const PersonalDetail = () => {
     nationality: '',
     languageProficiency: '',
     placeOfBirth: '',
-  });
+  };
+
+  const [formData, setFormData] = useState(initialData);
+
+  const navigate = useNavigate();
+  const fathersNameRef = useRef(null);
+
+  useEffect(() => {
+    // Set focus on the "Father's Name" input when the component mounts
+    if (fathersNameRef.current) {
+      fathersNameRef.current.focus();
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +52,30 @@ const PersonalDetail = () => {
       <h1>Personal Details</h1>
       {inputFields.map((field, index) => (
         <div key={index}>
-          {index === 2 || index === 3 ? (
+          {index === 0 ? (
+            <input
+              ref={fathersNameRef}
+              type="text"
+              id={field.replace(/\s+/g, '')}
+              name={field.replace(/\s+/g, '')}
+              placeholder={field}
+              value={formData[field.replace(/\s+/g, '')]}
+              onChange={handleInputChange}
+              required
+            />
+          ) : index === 1 ? (
+            <>
+              <label htmlFor={field.replace(/\s+/g, '')}>{field}</label>
+              <input
+                type="date"
+                id={field.replace(/\s+/g, '')}
+                name={field.replace(/\s+/g, '')}
+                value={formData[field.replace(/\s+/g, '')]}
+                onChange={handleInputChange}
+                required
+              />
+            </>
+          ) : index === 2 || index === 3 ? (
             <select
               id={field.replace(/\s+/g, '')}
               name={field.replace(/\s+/g, '')}
@@ -62,7 +98,7 @@ const PersonalDetail = () => {
             </select>
           ) : (
             <input
-              type={index === 1 ? 'date' : 'text'}
+              type="text"
               id={field.replace(/\s+/g, '')}
               name={field.replace(/\s+/g, '')}
               placeholder={field}
@@ -73,7 +109,7 @@ const PersonalDetail = () => {
           )}
         </div>
       ))}
-
+      <button onClick={() => navigate('/additional')}>Previous</button>
       <button type="submit">Submit</button>
     </form>
   );
