@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { protectInstance } from '../services/instance';
 
 const PersonalDetail = () => {
   const initialData = JSON.parse(sessionStorage.getItem('personalDetails')) || {
@@ -18,8 +20,7 @@ const PersonalDetail = () => {
   const fathersNameRef = useRef(null);
 
   useEffect(() => {
-    // Set focus on the "Father's Name" input when the component mounts
-    if (fathersNameRef.current) {
+     if (fathersNameRef.current) {
       fathersNameRef.current.focus();
     }
   }, []);
@@ -29,9 +30,27 @@ const PersonalDetail = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     sessionStorage.setItem('personalDetails', JSON.stringify(formData));
+    const resumeData = {
+      studentDetails: JSON.parse(sessionStorage.getItem('studentDetails')),
+      educationDetails: JSON.parse(sessionStorage.getItem('educationDetails')),
+      additionalDetails: JSON.parse(sessionStorage.getItem('additionalDetails')),
+      personalDetails: JSON.parse(sessionStorage.getItem('personalDetails')),
+    }
+    console.log(resumeData);
+    try {
+    const res = await protectInstance.post('/resume/resume-model',  resumeData );
+
+    if (res.data) {
+      console.log('Data posted successfully');
+    } else {
+      console.log('Error in data posting');
+    }
+  } catch (error) {
+    console.error('Error in POST request:', error.message);
+  }
   };
 
   const inputFields = [
@@ -41,7 +60,7 @@ const PersonalDetail = () => {
     'Marital Status',
     'Nationality',
     'Language Proficiency',
-    'Place of Birth',
+    'Native Place',
   ];
 
   const maritalStatusOptions = ['Single', 'Married'];
