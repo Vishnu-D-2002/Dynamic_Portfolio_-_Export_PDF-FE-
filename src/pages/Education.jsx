@@ -53,7 +53,7 @@ const Education = () => {
         {Object.entries(educationDetails.twelfth).map(([field, value], index) => (
           <input
             key={index}
-            type={field === 'percentage' ? 'number' : 'text'}
+            type={field === 'percentage' || field === 'passedOutYear' ? 'number' : 'text'}
             placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
             value={value}
             onChange={(e) => handleInputChange('twelfth', field, e.target.value)}
@@ -67,7 +67,7 @@ const Education = () => {
         {Object.entries(educationDetails.tenth).map(([field, value], index) => (
           <input
             key={index}
-            type={field === 'percentage' ? 'number' : 'text'}
+            type={field === 'percentage' || field === 'passedOutYear' ? 'number' : 'text'}
             placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
             value={value}
             onChange={(e) => handleInputChange('tenth', field, e.target.value)}
