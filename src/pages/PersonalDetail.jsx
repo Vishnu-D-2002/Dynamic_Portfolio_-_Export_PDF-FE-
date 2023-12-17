@@ -129,7 +129,7 @@ const PersonalDetails = () => {
             )}
           </div>
         ))}
-        <button onClick={() => navigate('/additional')}>Previous</button>
+        <button onClick={() => navigate('/experience')}>Previous</button>
         <button type="submit">Next</button>
       </form>
     </div>

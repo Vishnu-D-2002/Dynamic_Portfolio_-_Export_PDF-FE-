@@ -42,7 +42,7 @@ const Additional = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     sessionStorage.setItem('additionalDetails', JSON.stringify(formData));
-    navigate('/personal');
+    navigate('/experience');
   };
 
   return (

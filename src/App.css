@@ -26,7 +26,7 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input,select {
+input,select,textarea {
     width: 55vw;
     padding: 10px;
     margin: 8px 0;

@@ -15,6 +15,7 @@ import Templates from './pages/Templates'
 import Temp1 from './pages/Temp1'
 import Temp2 from './pages/Temp2'
 import Temp3 from './pages/Temp3'
+import Experience from './pages/Experience'
 
 function App() {
   return (
@@ -28,9 +29,10 @@ function App() {
             <Route path='/emailSend' element={ <EmailSend /> } />
             <Route path='/resetPassword/:randomString' element={<ResetPassword />} />
             <Route path='/activate/:activationToken' element={<Activated />} />
+            <Route path="/student" element={<StudentDetail />} />
             <Route path="/education" element={<Education />} />
             <Route path="/additional" element={<Additional />} />
-            <Route path="/student" element={<StudentDetail />} />
+            <Route path='/experience' element={<Experience />} />
             <Route path="/personal" element={<PersonalDetail />} />
             <Route path='/templates' element={<Templates />} />
             <Route path='/temp1' element={<Temp1 />} />
