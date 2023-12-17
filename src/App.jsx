@@ -11,6 +11,10 @@ import Additional from './pages/Additional'
 import StudentDetail from './pages/StudentDetail'
 import PersonalDetail from './pages/PersonalDetail'
 import Education from './pages/Education'
+import Templates from './pages/Templates'
+import Temp1 from './pages/Temp1'
+import Temp2 from './pages/Temp2'
+import Temp3 from './pages/Temp3'
 
 function App() {
   return (
@@ -28,6 +32,10 @@ function App() {
             <Route path="/additional" element={<Additional />} />
             <Route path="/student" element={<StudentDetail />} />
             <Route path="/personal" element={<PersonalDetail />} />
+            <Route path='/templates' element={<Templates />} />
+            <Route path='/temp1' element={<Temp1 />} />
+            <Route path='/temp2' element={<Temp2 />} />
+            <Route path='/temp3' element={ <Temp3 /> } />
           </Routes>
         </div>
       </Router>
