@@ -58,8 +58,10 @@ const PersonalDetails = () => {
       studentDetails: JSON.parse(sessionStorage.getItem('studentDetails')),
       educationDetails: JSON.parse(sessionStorage.getItem('educationDetails')),
       additionalDetails: JSON.parse(sessionStorage.getItem('additionalDetails')),
+      experience: JSON.parse(sessionStorage.getItem('experience')),
       personalDetails: JSON.parse(sessionStorage.getItem('personalDetails')),
-    }
+      }
+      sessionStorage.setItem('resumeData',JSON.stringify(resumeData ))
     console.log(resumeData);
     try {
     const res = await protectInstance.post('/resume/resume-model',  resumeData );

@@ -1,95 +1,110 @@
 import React from 'react';
-import './Temp2.css';
 
 const Temp1 = () => {
+  const resumeData = JSON.parse(sessionStorage.getItem('resumeData'));
 
-  const resumeData = {
-      studentDetails: JSON.parse(sessionStorage.getItem('studentDetails')),
-      educationDetails: JSON.parse(sessionStorage.getItem('educationDetails')),
-      additionalDetails: JSON.parse(sessionStorage.getItem('additionalDetails')),
-      personalDetails: JSON.parse(sessionStorage.getItem('personalDetails')),
-    }
-      const { studentDetails, educationDetails, additionalDetails, personalDetails } = resumeData;
-  console.log(resumeData)
-  
+  const {
+    studentDetails,
+    educationDetails,
+    additionalDetails,
+    personalDetails,
+    experience,
+  } = resumeData;
+
   return (
     <div>
-      <div className="name">
-        <b>VISHNU D</b>
-      </div>
-      <div className="content">
-        <div className="left">
-          <img src="/images/CV-Template-01.jpg" width="150px" height="200px" alt="Profile" />
-          <br />
-          <br />
-          <b>Mail Id : </b>
-          <a href="mailto:vishnuduraisamy2002@gmail.com">vishnuduraisamy2002@gmail.com</a>
-          <br />
-          <b>Contact :</b>
-          <a href="">8778847843</a>
-          <div>
-            <b id="ad">Address :</b>
-            <address className="is">8/160-1, EB office North side, Mallasamudram(PO),Thiruchengode(TK), Namakkal (DT) - 637 503.</address>
-          </div>
-          <b>LinkedIn ID :</b>
-          <br />
-          <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit">https://www.linkedin.com/</a>
-          <br />
-          <b>Objective :</b>
-          <p className="is">To pursue a career in the field of electronics and communication engineering by being a part of progressive organization where I can work towards the growth of the organization and harness the best of my career.</p>
-          <b>Personal Details :</b>
-          <p>Date of Birth : 26/03/2002</p>
-          <p>Gender : Male</p>
-          {/* Add the rest of the personal details */}
-          <b>Skills :</b>
-          <ul>
-            <li>c programming</li>
-            <li>c++ basics</li>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JAVA Script</li>
-          </ul>
-          <b>Interests :</b>
-          <ul>
-            <li>IoT</li>
-            <li>Software Development</li>
-            <li>Embedded System</li>
-            <li>Problem Solving</li>
-            <li>Fast Learner</li>
-          </ul>
-        </div>
+      {/* Education Details */}
+      <h2>Education Details:</h2>
+      <p>College Name: {educationDetails.college.collegeName}</p>
+      <p>Qualification: {educationDetails.college.qualification}</p>
+      <p>CGPA: {educationDetails.college.cgpa}</p>
+      <p>Passed Out Year: {educationDetails.college.passedOutYear}</p>
 
-        <div className="right">
-          <b>Education :</b><br />
-          <h2> Bachelor Of Engineering (ECE):</h2>
-          <h3> AVS Engineering College - 87% -  2023</h3>
-          <h2> HSC :</h2>
-          <h3>AKV Matric Hr.sec School - 84% - 2019</h3>
-          <h2> SSLC :</h2>
-          <h3>AKV Matric Hr.sec School - 96% - 2017</h3>
-          <b>Projects :</b>
-          <h2>Smart solution for Railways</h2>
-          <p>A Web page is designed for the public where they can book tickets by seeing the available seats. After booking the train, the person will get a QR code which has to be shown to the Ticket Collector while boarding the train. The ticket collectors can scan the QR code to identify the personal details.</p>
-          <h3>tools used :</h3>
-          <p>Python IDLE, NODE-RED Service, IBM Watson IoT Platform, Cloudant DB.</p>
-          <b>Certification :</b>
-          <h3>Certification on java programming (basics) at Great Learning Academy on July 2022.</h3>
-          <b>Webinar :</b>
-          <p>
-            <ul>
-              <li>Webinar on “Reliability Science & Technology” on 06.03.2022 at Educare Taiwan.</li>
-              <li>Webinar on “ Real Time Information” on 11.09.2022 at Educare Taiwan.</li>
-            </ul>
-          </p>
-          <b>Internship Trainings :</b>
-          <p>
-            <ul>
-              <li>Internship Training on “IoT” on 15.02.2022 at Odunga Tech Pvt.Ltd.</li>
-              <li>Internship Training on “Embedded System” on 24.02.2022 to 26.02.2022 at Tripple Tech Pvt.Ltd.</li>
-            </ul>
-          </p>
+      <p>Tenth School Name: {educationDetails.tenth.schoolName}</p>
+      <p>Board: {educationDetails.tenth.board}</p>
+      <p>Percentage: {educationDetails.tenth.percentage}</p>
+      <p>Passed Out Year: {educationDetails.tenth.passedOutYear}</p>
+
+      <p>Twelfth School Name: {educationDetails.twelfth.schoolName}</p>
+      <p>Board: {educationDetails.twelfth.board}</p>
+      <p>Percentage: {educationDetails.twelfth.percentage}</p>
+      <p>Passed Out Year: {educationDetails.twelfth.passedOutYear}</p>
+
+      {/* Personal Details */}
+      <h2>Personal Details:</h2>
+      <p>Date of Birth: {personalDetails.dob}</p>
+      <p>Father's Name: {personalDetails.fathersName}</p>
+      <p>Gender: {personalDetails.gender}</p>
+      <p>Language Proficiency: {personalDetails.languageProficiency}</p>
+      <p>Marital Status: {personalDetails.maritalStatus}</p>
+      <p>Nationality: {personalDetails.nationality}</p>
+      <p>Place of Birth: {personalDetails.placeOfBirth}</p>
+
+      {/* Student Details */}
+      <h2>Student Details:</h2>
+      <ul>
+        {Object.keys(studentDetails).map((key, index) => (
+          <li key={index}>
+            {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
+          </li>
+        ))}
+      </ul>
+      
+      {/* Additional Details */}
+      <h2>Additional Details:</h2>
+      <p>Area of Interest:</p>
+      <ul>
+        {Object.keys(additionalDetails)
+          .filter(key => key.startsWith('areaOfInterest') && additionalDetails[key].trim() !== '')
+          .map(key => (
+            <li key={key}>{additionalDetails[key]}</li>
+          ))}
+      </ul>
+      <p>Career Objective: {additionalDetails.careerObjective}</p>
+
+      {/* Skills */}
+      <h3>Skills:</h3>
+      <ul>
+        {Object.keys(additionalDetails)
+          .filter(key => key.startsWith('skills') && additionalDetails[key].trim() !== '')
+          .map(key => (
+            <li key={key}>{additionalDetails[key]}</li>
+          ))}
+      </ul>
+
+      {/* Personal Skills */}
+      <h3>Personal Skills:</h3>
+      <ul>
+        {Object.keys(additionalDetails)
+          .filter(key => key.startsWith('personalSkill') && additionalDetails[key].trim() !== '')
+          .map(key => (
+            <li key={key}>{additionalDetails[key]}</li>
+          ))}
+      </ul>
+
+      {/* Experience */}
+      <h2>Experience:</h2>
+      {experience.experiences.map((exp, index) => (
+        <div key={index}>
+          <p>Title: {exp.title}</p>
+          <p>Description: {exp.description}</p>
         </div>
-      </div>
+      ))}
+
+      {/* Hobbies */}
+      <h2>Hobbies:</h2>
+      {experience.hobbies.map((hobby, index) => (
+        <p key={index}>Hobby {index + 1}: {hobby.name}</p>
+      ))}
+
+      {/* Projects */}
+      <h2>Projects:</h2>
+      {experience.projects.map((project, index) => (
+        <div key={index}>
+          <p>Title: {project.title}</p>
+          <p>Description: {project.description}</p>
+        </div>
+      ))}
     </div>
   );
 };
