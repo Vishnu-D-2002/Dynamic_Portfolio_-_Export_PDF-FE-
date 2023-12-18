@@ -1,5 +1,7 @@
 import React from 'react';
 import './Temp2.css';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 const Temp2 = () => {
   const resumeData = {
@@ -16,8 +18,22 @@ const Temp2 = () => {
     personalDetails,
   } = resumeData;
 
+      const downloadPDF = () =>{
+    const capture = document.querySelector('.resumecontainer');
+
+    html2canvas(capture).then((canvas)=>{
+      const imgData = canvas.toDataURL('img/png');
+      const doc = new jsPDF('p', 'mm', 'a4');
+      const componentWidth = doc.internal.pageSize.getWidth();
+      const componentHeight = doc.internal.pageSize.getHeight();
+      doc.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight);
+      doc.save('Resume.pdf');
+    })
+  }
+
   return (
-    <div>
+    <div className="resumecontainer">
+      <button onClick={downloadPDF}>Download</button>
       <div className="name">
         <b>{`${studentDetails.firstname} ${studentDetails.lastname}`}</b>
       </div>
