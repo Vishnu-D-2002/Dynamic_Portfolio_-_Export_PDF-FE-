@@ -1,11 +1,24 @@
-// Temp1.js
-
-import React from 'react';
+import React, { useState } from 'react';
 import './Temp1.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const Temp1 = () => {
+  const [userImage, setUserImage] = useState(null);
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setUserImage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   const resumeData = JSON.parse(sessionStorage.getItem('resumeData'));
 
   const {
@@ -31,23 +44,27 @@ const Temp1 = () => {
 
   return (
     <div>
+      <h2>If you want Image in your resume Please upload the Image in below input box </h2>
+      <input type="file" accept="image/*" onChange={handleImageUpload} />
+      
       <button onClick={downloadPDF}>Download</button>
       <div id='box'>
         <div className="resume-container">
           <div id='top-center'>
+            {userImage && <img src={userImage} alt="Uploaded" width={130} height={130} id='img1' />}
             <strong className='underline top'>
               {studentDetails.firstname} {studentDetails.lastname}
             </strong>
             <a className='top' href={`mailto:${studentDetails.email}`}>
               {studentDetails.email}
             </a>
-            <p className='underline top'>{studentDetails.phonenumber}</p>
+            <p className='underline top' id='phone1'>{studentDetails.phonenumber}</p>
           </div>
 
           <div className="left-side">
             <div className="section">
               <h2 className='underline'>Career Objective: </h2>
-              <p>{additionalDetails.careerObjective}</p>
+              <p>{additionalDetails.careerObjective}</p><hr />
 
               <h2 className='underline'>Contact Details:</h2>
               {Object.keys(studentDetails).map((key, index) => (
@@ -58,7 +75,7 @@ const Temp1 = () => {
                   </p>
                 )
               ))}
-            </div>
+            </div><hr />
 
             <div className="section">
               <h2 className='underline'>Personal Details:</h2>
@@ -69,7 +86,7 @@ const Temp1 = () => {
               <p>Marital Status: {personalDetails.maritalStatus}</p>
               <p>Nationality: {personalDetails.nationality}</p>
               <p>Native Place: {personalDetails.placeOfBirth}</p>
-            </div>
+            </div><hr />
 
             <div className="section">
               <h2 className='underline'>Skills:</h2>
@@ -79,7 +96,7 @@ const Temp1 = () => {
                   .map((key) => (
                     <li key={key}>{additionalDetails[key]}</li>
                   ))}
-              </ul>
+              </ul><hr />
 
               <h2 className='underline'>Personal Skills:</h2>
               <ul className="detail-list">
@@ -109,30 +126,9 @@ const Temp1 = () => {
               <h2>HSC - {educationDetails.twelfth.schoolName}</h2>
               <h3>{educationDetails.twelfth.board}</h3>
               <h3>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
-            </div>
+            </div><hr />
 
-            <div className="section">
-              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
-                <h2 className='underline'>Experience:</h2>
-              )}
-
-              {experience.experiences.map((exp, index) => (
-                <div key={index}>
-                  <h2>{exp.title}</h2>
-                  <p>{exp.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="section">
-              <h2 className='underline'>Hobbies:</h2>
-              <ul>
-                {experience.hobbies.map((hobby, index) => (
-                  <li key={index}>{hobby.name}</li>
-                ))}
-              </ul>
-            </div>
-
+           
             <div className="section">
               {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
                 <h2 className='underline'>Projects:</h2>
@@ -143,7 +139,29 @@ const Temp1 = () => {
                   <h2>{project.title}</h2>
                   <p>{project.description}</p>
                 </div>
+              ))}<hr />
+
+               <div className="section">
+              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
+                <h2 className='underline'>Experience:</h2>
+              )}
+
+              {experience.experiences.map((exp, index) => (
+                <div key={index}>
+                  <h2>{exp.title}</h2>
+                  <p>{exp.description}</p>
+                </div>
               ))}
+            </div><hr />
+
+            <div className="section">
+              <h2 className='underline'>Hobbies:</h2>
+              <ul>
+                {experience.hobbies.map((hobby, index) => (
+                  <li key={index}>{hobby.name}</li>
+                ))}
+              </ul>
+            </div><hr />
 
               <h2 className='underline'>Area of Interest:</h2>
               <ul className="detail-list">

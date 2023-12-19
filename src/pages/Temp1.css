@@ -1,7 +1,7 @@
 #box {
     min-width: 700px;
     margin: 0 auto;
-    background-color: rgb(220, 223, 209);
+    background-color: rgb(237, 33, 14);
 }
 
 .resume-container {
@@ -45,15 +45,18 @@ strong{
 }
 
 #top-center{
-    margin-left: 33%;
+    margin-left: 39%;
     display: block;
 }
 
+#phone1{
+    margin-left: 8%;
+}
 #box {
     width: 80%;
     min-width: 1200px;
     margin: 0 auto;
-    background-color: rgb(220, 223, 209);
+    background-color: #d2d2c0;
 }
 
 .resume-container {
@@ -76,12 +79,25 @@ strong{
     width: 48%;
 }
 
+.left-side{
+    border-right: 1px solid black;
+}
+
 .resume-container {
     font-family: 'Arial', sans-serif;
 }
 
 h2,
 h3 {
-    color: #333;
+    /* color: #333; */
 }
 
+#box {
+    position: relative;
+}
+
+#img1 {
+    position: absolute;
+    top: 20px;
+    left: 75px;
+}
