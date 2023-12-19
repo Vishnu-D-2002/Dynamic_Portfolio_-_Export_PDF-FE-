@@ -1,131 +1,181 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Temp2.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const Temp2 = () => {
-  const resumeData = {
-    studentDetails: JSON.parse(sessionStorage.getItem('studentDetails')),
-    educationDetails: JSON.parse(sessionStorage.getItem('educationDetails')),
-    additionalDetails: JSON.parse(sessionStorage.getItem('additionalDetails')),
-    personalDetails: JSON.parse(sessionStorage.getItem('personalDetails')),
+  const [userImage, setUserImage] = useState(null);
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setUserImage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
+
+  const resumeData = JSON.parse(sessionStorage.getItem('resumeData'));
 
   const {
     studentDetails,
     educationDetails,
     additionalDetails,
     personalDetails,
+    experience,
   } = resumeData;
 
-      const downloadPDF = () =>{
-    const capture = document.querySelector('.resumecontainer');
+  const downloadPDF = () => {
+    const capture = document.querySelector('.resume-container2');
 
-    html2canvas(capture).then((canvas)=>{
+    html2canvas(capture).then((canvas) => {
       const imgData = canvas.toDataURL('img/png');
       const doc = new jsPDF('p', 'mm', 'a4');
       const componentWidth = doc.internal.pageSize.getWidth();
       const componentHeight = doc.internal.pageSize.getHeight();
       doc.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight);
       doc.save('Resume.pdf');
-    })
-  }
+    });
+  };
 
   return (
-    <div className="resumecontainer">
+    <div>
+      <h2>If you want Image in your resume Please upload the Image in below input box </h2>
+      <input type="file" accept="image/*" onChange={handleImageUpload} />
+      
       <button onClick={downloadPDF}>Download</button>
-      <div className="name">
-        <b>{`${studentDetails.firstname} ${studentDetails.lastname}`}</b>
-      </div>
-      <div className="content">
-        <div className="left">
-          <img
-            src="/images/CV-Template-01.jpg"
-            width="150px"
-            height="200px"
-            alt="Profile"
-          />
-          <br />
-          <br />
-          <b>Mail Id:</b>
-          <a href={`mailto:${studentDetails.email}`}>{studentDetails.email}</a>
-          <br />
-          <b>Contact:</b>
-          <a href={`tel:${studentDetails.phonenumber}`}>
-            {studentDetails.phonenumber}
-          </a>
-          <div>
-            <b id="ad">Address:</b>
-            <address className="is">{studentDetails.address}</address>
+      <div id='box2'>
+        <div className="resume-container2">
+          <div id='top-center2'>
+            {userImage && <img src={userImage} alt="Uploaded" width={130} height={130} id='img2' />}
+            <strong className='underline2 top2'>
+              {studentDetails.firstname} {studentDetails.lastname}
+            </strong>
+            <a className='top2' href={`mailto:${studentDetails.email}`}>
+              {studentDetails.email}
+            </a>
+            <p className='underline2 top2' id='phone2'>{studentDetails.phonenumber}</p>
           </div>
-          <b>LinkedIn ID:</b>
-          <br />
-          <a href={studentDetails.linkedin}>{studentDetails.linkedin}</a>
-          <br />
-          <b>Objective:</b>
-          <p className="is">{additionalDetails.careerObjective}</p>
-          <b>Personal Details:</b>
-          <p>Date of Birth: {personalDetails.DateofBirth}</p>
-          <p>Gender: {personalDetails.Gender}</p>
-          <p>Father's Name: {personalDetails["Father'sName"]}</p>
-          <p>Language Proficiency: {personalDetails.LanguageProficiency}</p>
-          <p>Marital Status: {personalDetails.MaritalStatus}</p>
-          <p>Nationality: {personalDetails.Nationality}</p>
-          <p>Native Place: {personalDetails.NativePlace}</p>
-          <b>Skills:</b>
-          <ul>
-            {Array.from({ length: 5 }, (_, index) => (
-              <li key={index + 1}>
-                {additionalDetails[`skills${index + 1}`]}
-              </li>
-            ))}
-          </ul>
-          <b>Interests:</b>
-          <ul>
-            {Array.from({ length: 5 }, (_, index) => (
-              <li key={index + 1}>
-                {additionalDetails[`areaOfInterest${index + 1}`]}
-              </li>
-            ))}
-          </ul>
-        </div>
 
-        <div className="right">
-          <b>Education:</b>
-          <br />
-          <h2>{educationDetails.college.collegeName}</h2>
-          <h3>
-            {educationDetails.college.qualification} -{' '}
-            {educationDetails.college.cgpa} -{' '}
-            {educationDetails.college.passedOutYear}
-          </h3>
-          <h2>HSC:</h2>
-          <h3>
-            {educationDetails.twelfth.schoolName} -{' '}
-            {educationDetails.twelfth.board} -{' '}
-            {educationDetails.twelfth.percentage} -{' '}
-            {educationDetails.twelfth.passedOutYear}
-          </h3>
-          <h2>SSLC:</h2>
-          <h3>
-            {educationDetails.tenth.schoolName} -{' '}
-            {educationDetails.tenth.board} -{' '}
-            {educationDetails.tenth.percentage} -{' '}
-            {educationDetails.tenth.passedOutYear}
-          </h3>
-          <b>Projects:</b>
-          <ul>
-            {Array.from({ length: 5 }, (_, index) => (
-              <li key={index + 1}>
-                <h2>{additionalDetails[`projectTitle${index + 1}`]}</h2>
-                <p>{additionalDetails[`projectDescription${index + 1}`]}</p>
-              </li>
-            ))}
-          </ul>
-          <h3>Tools used:</h3>
-          <p>{additionalDetails.toolsUsed}</p>
-          <b>Certification:</b>
-          <h3>{additionalDetails.certification}</h3>
+          <div className="left-side2">
+            <div className="section2">
+              <h2 className='underline2'>Career Objective: </h2>
+              <p className='line-height2'>{additionalDetails.careerObjective}</p><hr />
+
+              <h2 className='underline2'>Contact Details:</h2>
+              {Object.keys(studentDetails).map((key, index) => (
+                // Check if the value is not empty before rendering
+                studentDetails[key].trim() !== '' && (
+                  <p key={index}>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
+                  </p>
+                )
+              ))}
+            </div><hr />
+
+            <div className="section2">
+              <h2 className='underline2'>Personal Details:</h2>
+              <p>Date of Birth: {personalDetails.dob}</p>
+              <p>Father's Name: {personalDetails.fathersName}</p>
+              <p>Gender: {personalDetails.gender}</p>
+              <p>Language Proficiency: {personalDetails.languageProficiency}</p>
+              <p>Marital Status: {personalDetails.maritalStatus}</p>
+              <p>Nationality: {personalDetails.nationality}</p>
+              <p>Native Place: {personalDetails.placeOfBirth}</p>
+            </div><hr />
+
+            <div className="section2">
+              <h2 className='underline2'>Skills:</h2>
+              <ul className="detail-list2">
+                {Object.keys(additionalDetails)
+                  .filter((key) => key.startsWith('skills') && additionalDetails[key].trim() !== '')
+                  .map((key) => (
+                    <li key={key} className='line-height2'>{additionalDetails[key]}</li>
+                  ))}
+              </ul><hr />
+
+              <h2 className='underline2'>Personal Skills:</h2>
+              <ul className="detail-list2">
+                {Object.keys(additionalDetails)
+                  .filter(
+                    (key) =>
+                      key.startsWith('personalSkill') && additionalDetails[key].trim() !== ''
+                  )
+                  .map((key) => (
+                    <li key={key} className='line-height2'>{additionalDetails[key]}</li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="right-side2">
+            <div className="section2">
+              <h2 className='underline2'>Education Details:</h2>
+              <h2>{educationDetails.college.qualification}</h2>
+              <h3 className='black'> {educationDetails.college.collegeName}</h3>
+              <h3 className='black'>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
+
+              <h2>SSLC - {educationDetails.tenth.schoolName}</h2>
+              <h3 className='black'>{educationDetails.tenth.board}</h3>
+              <h3 className='black'>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
+
+              <h2>HSC - {educationDetails.twelfth.schoolName}</h2>
+              <h3 className='black'>{educationDetails.twelfth.board}</h3>
+              <h3 className='black'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
+            </div><hr />
+
+           
+            <div className="section2">
+              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
+                <h2 className='underline2'>Projects:</h2>
+              )}
+
+              {experience.projects.map((project, index) => (
+                <div key={index}>
+                  <h2>{project.title}</h2>
+                  <p id='project' className='line-height2'>{project.description}</p>
+                </div>
+              ))}<hr />
+
+               <div className="section2">
+              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
+                <h2 className='underline2'>Experience:</h2>
+              )}
+
+              {experience.experiences.map((exp, index) => (
+                <div key={index}>
+                  <h2>{exp.title}</h2>
+                  <p id='experience' className='line-height2'>{exp.description}</p>
+                </div>
+              ))}
+            </div><hr />
+
+            <div className="section2">
+              <h2 className='underline2'>Hobbies:</h2>
+              <ul>
+                {experience.hobbies.map((hobby, index) => (
+                  <li key={index} className='line-height2'>{hobby.name}</li>
+                ))}
+              </ul>
+            </div><hr />
+
+              <h2 className='underline2'>Area of Interest:</h2>
+              <ul className="detail-list2">
+                {Object.keys(additionalDetails)
+                  .filter(
+                    (key) =>
+                      key.startsWith('areaOfInterest') && additionalDetails[key].trim() !== ''
+                  )
+                  .map((key) => (
+                    <li key={key} className='line-height2'>{additionalDetails[key]}</li>
+                  ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

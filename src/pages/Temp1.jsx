@@ -64,7 +64,7 @@ const Temp1 = () => {
           <div className="left-side">
             <div className="section">
               <h2 className='underline'>Career Objective: </h2>
-              <p>{additionalDetails.careerObjective}</p><hr />
+              <p className='line-height'>{additionalDetails.careerObjective}</p><hr />
 
               <h2 className='underline'>Contact Details:</h2>
               {Object.keys(studentDetails).map((key, index) => (
@@ -94,7 +94,7 @@ const Temp1 = () => {
                 {Object.keys(additionalDetails)
                   .filter((key) => key.startsWith('skills') && additionalDetails[key].trim() !== '')
                   .map((key) => (
-                    <li key={key}>{additionalDetails[key]}</li>
+                    <li key={key} className='line-height'>{additionalDetails[key]}</li>
                   ))}
               </ul><hr />
 
@@ -106,7 +106,7 @@ const Temp1 = () => {
                       key.startsWith('personalSkill') && additionalDetails[key].trim() !== ''
                   )
                   .map((key) => (
-                    <li key={key}>{additionalDetails[key]}</li>
+                    <li key={key} className='line-height'>{additionalDetails[key]}</li>
                   ))}
               </ul>
             </div>
@@ -116,16 +116,16 @@ const Temp1 = () => {
             <div className="section">
               <h2 className='underline'>Education Details:</h2>
               <h2>{educationDetails.college.qualification}</h2>
-              <h3> {educationDetails.college.collegeName}</h3>
-              <h3>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
+              <h3 className='black'> {educationDetails.college.collegeName}</h3>
+              <h3 className='black'>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
 
               <h2>SSLC - {educationDetails.tenth.schoolName}</h2>
-              <h3>{educationDetails.tenth.board}</h3>
-              <h3>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
+              <h3 className='black'>{educationDetails.tenth.board}</h3>
+              <h3 className='black'>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
 
               <h2>HSC - {educationDetails.twelfth.schoolName}</h2>
-              <h3>{educationDetails.twelfth.board}</h3>
-              <h3>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
+              <h3 className='black'>{educationDetails.twelfth.board}</h3>
+              <h3 className='black'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
             </div><hr />
 
            
@@ -137,7 +137,7 @@ const Temp1 = () => {
               {experience.projects.map((project, index) => (
                 <div key={index}>
                   <h2>{project.title}</h2>
-                  <p>{project.description}</p>
+                  <p className='line-height'>{project.description}</p>
                 </div>
               ))}<hr />
 
@@ -149,7 +149,7 @@ const Temp1 = () => {
               {experience.experiences.map((exp, index) => (
                 <div key={index}>
                   <h2>{exp.title}</h2>
-                  <p>{exp.description}</p>
+                  <p className='line-height'>{exp.description}</p>
                 </div>
               ))}
             </div><hr />
@@ -158,7 +158,7 @@ const Temp1 = () => {
               <h2 className='underline'>Hobbies:</h2>
               <ul>
                 {experience.hobbies.map((hobby, index) => (
-                  <li key={index}>{hobby.name}</li>
+                  <li key={index} className='line-height'>{hobby.name}</li>
                 ))}
               </ul>
             </div><hr />
@@ -171,7 +171,7 @@ const Temp1 = () => {
                       key.startsWith('areaOfInterest') && additionalDetails[key].trim() !== ''
                   )
                   .map((key) => (
-                    <li key={key}>{additionalDetails[key]}</li>
+                    <li key={key} className='line-height'>{additionalDetails[key]}</li>
                   ))}
               </ul>
             </div>

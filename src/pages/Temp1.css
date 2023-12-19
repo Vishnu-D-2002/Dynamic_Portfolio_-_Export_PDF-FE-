@@ -11,6 +11,10 @@
     box-sizing: border-box;
 }
 
+.black{
+    color: black;
+}
+
 .left-side,
 .right-side {
     min-width: 350px;
@@ -50,7 +54,7 @@ strong{
 }
 
 #phone1{
-    margin-left: 8%;
+    margin-left: 23%;
 }
 #box {
     width: 80%;
@@ -95,4 +99,8 @@ strong{
     position: absolute;
     top: 20px;
     left: 75px;
+}
+
+.line-height{
+    line-height:30px;
 }
