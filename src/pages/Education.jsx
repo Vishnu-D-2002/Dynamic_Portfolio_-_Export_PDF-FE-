@@ -18,12 +18,27 @@ const Education = () => {
     }
   }, []);
 
-  const handleInputChange = (section, field, value) => {
-    setEducationDetails((prevDetails) => ({
-      ...prevDetails,
-      [section]: { ...prevDetails[section], [field]: value },
-    }));
-  };
+ const handleInputChange = (section, field, value) => {
+  let validatedValue = value;
+
+  if ((field === 'cgpa' || field === 'percentage' || field === 'passedOutYear') && value.length > 0) {
+    if ((field === 'cgpa' || field === 'percentage') && !/^\d{0,2}$/.test(value)) {
+      return;
+    }
+
+    if (field === 'passedOutYear' && !/^\d{0,4}$/.test(value)) {
+      return;
+    }
+
+    validatedValue = value.slice(0, field === 'percentage' ? 2 : 4);
+  }
+
+  setEducationDetails((prevDetails) => ({
+    ...prevDetails,
+    [section]: { ...prevDetails[section], [field]: validatedValue },
+  }));
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -51,9 +51,12 @@ const Temp1 = () => {
 
               <h2 className='underline'>Contact Details:</h2>
               {Object.keys(studentDetails).map((key, index) => (
-                <p key={index}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
-                </p>
+                // Check if the value is not empty before rendering
+                studentDetails[key].trim() !== '' && (
+                  <p key={index}>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
+                  </p>
+                )
               ))}
             </div>
 
@@ -95,21 +98,24 @@ const Temp1 = () => {
           <div className="right-side">
             <div className="section">
               <h2 className='underline'>Education Details:</h2>
-              <h2> {educationDetails.college.collegeName}</h2>
-              <h3>{educationDetails.college.qualification}</h3>
-              <h3>{educationDetails.college.cgpa}% --{educationDetails.college.passedOutYear}</h3>
+              <h2>{educationDetails.college.qualification}</h2>
+              <h3> {educationDetails.college.collegeName}</h3>
+              <h3>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
 
               <h2>SSLC - {educationDetails.tenth.schoolName}</h2>
               <h3>{educationDetails.tenth.board}</h3>
-              <h3>{educationDetails.tenth.percentage}% --{educationDetails.tenth.passedOutYear}</h3>
+              <h3>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
 
               <h2>HSC - {educationDetails.twelfth.schoolName}</h2>
               <h3>{educationDetails.twelfth.board}</h3>
-              <h3>{educationDetails.twelfth.percentage}% --{educationDetails.twelfth.passedOutYear}</h3>
+              <h3>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
             </div>
 
             <div className="section">
-              <h2 className='underline'>Experience:</h2>
+              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
+                <h2 className='underline'>Experience:</h2>
+              )}
+
               {experience.experiences.map((exp, index) => (
                 <div key={index}>
                   <h2>{exp.title}</h2>
@@ -128,7 +134,10 @@ const Temp1 = () => {
             </div>
 
             <div className="section">
-              <h2 className='underline'>Projects:</h2>
+              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
+                <h2 className='underline'>Projects:</h2>
+              )}
+
               {experience.projects.map((project, index) => (
                 <div key={index}>
                   <h2>{project.title}</h2>
