@@ -163,3 +163,234 @@ form {
         margin: 15%;
     }
 }
+
+/* App.css or Dashboard.css */
+/* 
+.dashboard-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.left-align{
+    text-align: start;
+}
+
+#dashboard-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.dashboard-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dashboard-info {
+    margin-top: 30px;
+}
+
+#btnCR{
+    font-size: larger;
+}
+.recent-activities,
+.reviews,
+.related-content {
+    margin-top: 40px;
+}
+
+.reviews {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.review-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.review-item {
+    max-width: 400px;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.review-content {
+    font-size: 1.1em;
+}
+
+.review-author {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+.related-content {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.related-content a {
+    color: #007bff;
+}
+
+@media screen and (max-width: 600px) {
+    .dashboard-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-option {
+        width: 100%;
+        text-align: center;
+    }
+
+    .review-list {
+        flex-direction: column;
+        align-items: center;
+    }
+} */
+
+/* Dashboard.css */
+
+.dashboard-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.left-align {
+    text-align: left;
+    margin:auto 5%;
+    line-height: 34px;
+    font-size: large;
+}
+
+.dashboard-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dashboard-option {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dashboard-info {
+    margin-top: 30px;
+}
+
+#btnCR {
+    font-size: 1.2em;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+#btnCR:hover{
+    background-color: rgb(112, 214, 69);
+}
+
+.recent-activities,
+.reviews,
+.related-content {
+    margin-top: 40px;
+}
+
+.reviews {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.review-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.review-item {
+    max-width: 400px;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.review-content {
+    font-size: 1.1em;
+}
+
+.review-author {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+.related-content {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.related-content a {
+    color: #007bff;
+}
+
+.dash-head{
+    font-size: 1.5em;
+        color: #fff;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #f10d0d, #6B66FF);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+
+#dashboard-title{
+    font-size: 2.5em;
+    color: #fff;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #4CAF50, #007bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media screen and (max-width: 600px) {
+    .dashboard-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-option {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .review-list {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 601px) {
+    .left-align {
+        text-align: center;
+    }
+}
