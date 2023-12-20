@@ -16,6 +16,8 @@ import Temp1 from './pages/Temp1'
 import Temp2 from './pages/Temp2'
 import Temp3 from './pages/Temp3'
 import Experience from './pages/Experience'
+import Temp4 from './pages/Temp4'
+import Temp5 from './pages/Temp5'
 
 function App() {
   return (
@@ -37,7 +39,9 @@ function App() {
             <Route path='/templates' element={<Templates />} />
             <Route path='/temp1' element={<Temp1 />} />
             <Route path='/temp2' element={<Temp2 />} />
-            <Route path='/temp3' element={ <Temp3 /> } />
+            <Route path='/temp3' element={<Temp3 />} />
+            <Route path='/temp4' element={<Temp4 />} />
+            <Route path='/temp5' element={ <Temp5 /> } />
           </Routes>
         </div>
       </Router>

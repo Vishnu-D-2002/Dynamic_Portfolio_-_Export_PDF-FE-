@@ -69,7 +69,7 @@ const Temp2 = () => {
               <h2 className='underline2'>Contact Details:</h2>
               {Object.keys(studentDetails).map((key, index) => (
                 // Check if the value is not empty before rendering
-                studentDetails[key].trim() !== '' && (
+                studentDetails[key].trim() !== '' && index>3 && (
                   <p key={index}>
                     {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
                   </p>

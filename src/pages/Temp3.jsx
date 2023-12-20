@@ -66,13 +66,13 @@ const Temp3 = () => {
             
             <div className="section3">
               <h2 className='underline3'>Career Objective: </h2>
-              <p className='line-height3'>{additionalDetails.careerObjective}</p><hr />
+              <p className='line-height3 '>{additionalDetails.careerObjective}</p><hr />
 
               <h2 className='underline3'>Contact Details:</h2>
               {Object.keys(studentDetails).map((key, index) => (
                 // Check if the value is not empty before rendering
-                studentDetails[key].trim() !== '' && (
-                  <p key={index}>
+                studentDetails[key].trim() !== '' && index>3 && (
+                  <p key={index} className='ml3'>
                     {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
                   </p>
                 )
@@ -81,13 +81,13 @@ const Temp3 = () => {
 
             <div className="section3">
               <h2 className='underline3'>Personal Details:</h2>
-              <p>Date of Birth: {personalDetails.dob}</p>
-              <p>Father's Name: {personalDetails.fathersName}</p>
-              <p>Gender: {personalDetails.gender}</p>
-              <p>Language Proficiency: {personalDetails.languageProficiency}</p>
-              <p>Marital Status: {personalDetails.maritalStatus}</p>
-              <p>Nationality: {personalDetails.nationality}</p>
-              <p>Native Place: {personalDetails.placeOfBirth}</p>
+              <p className='ml3'>Date of Birth: {personalDetails.dob}</p>
+              <p className='ml3'>Father's Name: {personalDetails.fathersName}</p>
+              <p className='ml3'>Gender: {personalDetails.gender}</p>
+              <p className='ml3'>Language Proficiency: {personalDetails.languageProficiency}</p>
+              <p className='ml3'>Marital Status: {personalDetails.maritalStatus}</p>
+              <p className='ml3'>Nationality: {personalDetails.nationality}</p>
+              <p className='ml3'>Native Place: {personalDetails.placeOfBirth}</p>
             </div><hr />
 
             <div className="section3">
@@ -139,7 +139,7 @@ const Temp3 = () => {
               {experience.projects.map((project, index) => (
                 <div key={index}>
                   <h2 className='head-left3'>{project.title}</h2>
-                  <p id='project3' className='line-height3'>{project.description}</p>
+                  <p id='project3' className='line-height3 ml3'>{project.description}</p>
                 </div>
               ))}<hr />
 
@@ -151,7 +151,7 @@ const Temp3 = () => {
               {experience.experiences.map((exp, index) => (
                 <div key={index}>
                   <h2 className='head-left3'>{exp.title}</h2>
-                  <p id='experience3' className='line-height3'>{exp.description}</p>
+                  <p id='experience3' className='line-height3 ml3'>{exp.description}</p>
                 </div>
               ))}
             </div><hr />
