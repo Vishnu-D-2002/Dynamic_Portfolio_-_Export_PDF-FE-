@@ -69,7 +69,7 @@ const Temp2 = () => {
               <h2 className='underline2'>Contact Details:</h2>
               {Object.keys(studentDetails).map((key, index) => (
                 // Check if the value is not empty before rendering
-                studentDetails[key].trim() !== '' && index>3 && (
+                studentDetails[key].trim() !== '' && index > 3 && (
                   <p key={index}>
                     {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
                   </p>
@@ -119,13 +119,14 @@ const Temp2 = () => {
               <h3 className='black'> {educationDetails.college.collegeName}</h3>
               <h3 className='black'>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
 
-              <h2>SSLC - {educationDetails.tenth.schoolName}</h2>
-              <h3 className='black'>{educationDetails.tenth.board}</h3>
+              <h2>HSC - {educationDetails.twelfth.board}</h2>
+              <h3 className='black'>{educationDetails.twelfth.schoolName}</h3>
+              <h3 className='black'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
+
+              <h2>SSLC - {educationDetails.tenth.board}</h2>
+              <h3 className='black'>{educationDetails.tenth.schoolName}</h3>
               <h3 className='black'>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
 
-              <h2>HSC - {educationDetails.twelfth.schoolName}</h2>
-              <h3 className='black'>{educationDetails.twelfth.board}</h3>
-              <h3 className='black'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
             </div><hr />
 
            
@@ -139,29 +140,33 @@ const Temp2 = () => {
                   <h2>{project.title}</h2>
                   <p id='project' className='line-height2'>{project.description}</p>
                 </div>
-              ))}<hr />
-
-               <div className="section2">
-              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
-                <h2 className='underline2'>Experience:</h2>
-              )}
-
-              {experience.experiences.map((exp, index) => (
-                <div key={index}>
-                  <h2>{exp.title}</h2>
-                  <p id='experience' className='line-height2'>{exp.description}</p>
-                </div>
               ))}
-            </div><hr />
 
-            <div className="section2">
-              <h2 className='underline2'>Hobbies:</h2>
-              <ul>
-                {experience.hobbies.map((hobby, index) => (
-                  <li key={index} className='line-height2'>{hobby.name}</li>
+              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (experience.projects.length > 0) && <hr />}
+
+              <div className="section2">
+                {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
+                  <h2 className='underline2'>Experience:</h2>
+                )}
+
+                {experience.experiences.map((exp, index) => (
+                  <div key={index}>
+                    <h2>{exp.title}</h2>
+                    <p id='experience' className='line-height2'>{exp.description}</p>
+                  </div>
                 ))}
-              </ul>
-            </div><hr />
+                
+                {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (experience.experiences.length > 0) && <hr />}
+              </div>
+
+              <div className="section2">
+                <h2 className='underline2'>Hobbies:</h2>
+                <ul>
+                  {experience.hobbies.map((hobby, index) => (
+                    <li key={index} className='line-height2'>{hobby.name}</li>
+                  ))}
+                </ul>
+              </div><hr />
 
               <h2 className='underline2'>Area of Interest:</h2>
               <ul className="detail-list2">

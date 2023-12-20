@@ -69,7 +69,7 @@ const Temp1 = () => {
               <h2 className='underline'>Contact Details:</h2>
               {Object.keys(studentDetails).map((key, index) => (
                 // Check if the value is not empty before rendering
-                studentDetails[key].trim() !== '' && index>2 && (
+                studentDetails[key].trim() !== '' && index > 2 && (
                   <p key={index} className='ml1'>
                     {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
                   </p>
@@ -119,15 +119,15 @@ const Temp1 = () => {
               <h3 className='black'> {educationDetails.college.collegeName}</h3>
               <h3 className='black'>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
 
-              <h2 className='edu-head'>SSLC - {educationDetails.tenth.schoolName}</h2>
-              <h3 className='black'>{educationDetails.tenth.board}</h3>
+              <h2 className='edu-head'>HSC - {educationDetails.twelfth.board}</h2>
+              <h3 className='black'>{educationDetails.twelfth.schoolName}</h3>
+              <h3 className='black'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
+
+              <h2 className='edu-head'>SSLC - {educationDetails.tenth.board}</h2>
+              <h3 className='black'> {educationDetails.tenth.schoolName}</h3>
               <h3 className='black'>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
 
-              <h2 className='edu-head'>HSC - {educationDetails.twelfth.schoolName}</h2>
-              <h3 className='black'>{educationDetails.twelfth.board}</h3>
-              <h3 className='black'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
             </div><hr />
-
            
             <div className="section">
               {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
@@ -139,29 +139,35 @@ const Temp1 = () => {
                   <h2 className='edu-head'>{project.title}</h2>
                   <p className='line-height'>{project.description}</p>
                 </div>
-              ))}<hr />
-
-               <div className="section">
-              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
-                <h2 className='underline'>Experience:</h2>
-              )}
-
-              {experience.experiences.map((exp, index) => (
-                <div key={index}>
-                  <h2 className='edu-head'>{exp.title}</h2>
-                  <p className='line-height'>{exp.description}</p>
-                </div>
+                
               ))}
-            </div><hr />
 
-            <div className="section">
-              <h2 className='underline'>Hobbies:</h2>
-              <ul>
-                {experience.hobbies.map((hobby, index) => (
-                  <li key={index} className='line-height'>{hobby.name}</li>
+              {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (experience.projects.length > 0) && <hr />}
+
+              <div className="section">
+                {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
+                  <h2 className='underline'>Experience:</h2>
+                )}
+
+                {experience.experiences.map((exp, index) => (
+                  <div key={index}>
+                    <h2 className='edu-head'>{exp.title}</h2>
+                    <p className='line-height'>{exp.description}</p>
+                  </div>
                 ))}
-              </ul>
-            </div><hr />
+                
+                {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (experience.experiences.length > 0) && <hr />}
+                
+              </div>
+
+              <div className="section">
+                <h2 className='underline'>Hobbies:</h2>
+                <ul>
+                  {experience.hobbies.map((hobby, index) => (
+                    <li key={index} className='line-height'>{hobby.name}</li>
+                  ))}
+                </ul>
+              </div><hr />
 
               <h2 className='underline'>Area of Interest:</h2>
               <ul className="detail-list">

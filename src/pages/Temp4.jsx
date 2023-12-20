@@ -139,13 +139,14 @@ const Temp4 = () => {
                             <h3 className='black4'> {educationDetails.college.collegeName}</h3>
                             <h3 className='black4'>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
 
+                            <h2 className='head-left4'>HSC - {educationDetails.twelfth.board}</h2>
+                            <h3 className='black4'>{educationDetails.twelfth.schoolName}</h3>
+                            <h3 className='black4'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
+
                             <h2 className='head-left4'>SSLC - {educationDetails.tenth.board}</h2>
                             <h3 className='black4'> {educationDetails.tenth.schoolName}</h3>
                             <h3 className='black4'>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
 
-                            <h2 className='head-left4'>HSC - {educationDetails.twelfth.board}</h2>
-                            <h3 className='black4'>{educationDetails.twelfth.schoolName}</h3>
-                            <h3 className='black4'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
                         </div><hr />
 
            
@@ -169,7 +170,9 @@ const Temp4 = () => {
                                     <h2 className='head-left4'>{project.title}</h2>
                                     <p id='project4' className='line-height4 ml4'>{project.description}</p>
                                 </div>
-                            ))}<hr />
+                            ))}
+
+                            {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (experience.projects.length > 0) && <hr />}
 
                             <div className="section4">
                                 {experience.experiences.some(exp => exp.title.trim() !== '' || exp.description.trim() !== '') && (
@@ -183,7 +186,6 @@ const Temp4 = () => {
                                     </div>
                                 ))}
                             </div>
-
                        
                         </div>
                     </div>
