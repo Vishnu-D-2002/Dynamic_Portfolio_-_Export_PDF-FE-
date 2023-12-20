@@ -31,6 +31,8 @@ li{
 
 .underline{
     text-decoration: underline;
+    text-align: start;
+    color: black;
 }
 
 .top{
@@ -51,6 +53,8 @@ strong{
 #top-center{
     margin-left: 39%;
     display: block;
+    margin-bottom: 5%;
+    margin-top: 2%;
 }
 
 #phone1{
@@ -60,7 +64,7 @@ strong{
     width: 80%;
     min-width: 1200px;
     margin: 0 auto;
-    background-color: #e1dfdf;
+   
 }
 
 .resume-container {
@@ -68,6 +72,7 @@ strong{
     flex-wrap: wrap;
     padding: 20px;
     box-sizing: border-box;
+    background-color: #91fdfd;
 }
 
 .left-side,
@@ -85,6 +90,15 @@ strong{
 
 .left-side{
     border-right: 1px solid black;
+    /* color: white; */
+    /* background-color: #575656; */
+}
+
+.edu-head{
+    /* background-color: rgb(210, 205, 198); */
+    color: rgb(2, 1, 1);
+    text-align: start;
+    margin-left: 5%;
 }
 
 .resume-container {
@@ -98,9 +112,15 @@ strong{
 #img1 {
     position: absolute;
     top: 20px;
-    left: 75px;
+    right: 95px;
 }
 
 .line-height{
     line-height:30px;
+    text-align: start;
+    margin-left: 10%;
+}
+
+.ml1{
+    margin-left: 10%;
 }

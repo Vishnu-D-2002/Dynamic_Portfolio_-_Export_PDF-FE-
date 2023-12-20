@@ -58,7 +58,7 @@ const Temp1 = () => {
             <a className='top' href={`mailto:${studentDetails.email}`}>
               {studentDetails.email}
             </a>
-            <p className='underline top' id='phone1'>{studentDetails.phonenumber}</p>
+            {/* <p className='underline top' id='phone1'>{studentDetails.phonenumber}</p> */}
           </div>
 
           <div className="left-side">
@@ -70,7 +70,7 @@ const Temp1 = () => {
               {Object.keys(studentDetails).map((key, index) => (
                 // Check if the value is not empty before rendering
                 studentDetails[key].trim() !== '' && (
-                  <p key={index}>
+                  <p key={index} className='ml1'>
                     {key.charAt(0).toUpperCase() + key.slice(1)}: {studentDetails[key]}
                   </p>
                 )
@@ -79,13 +79,13 @@ const Temp1 = () => {
 
             <div className="section">
               <h2 className='underline'>Personal Details:</h2>
-              <p>Date of Birth: {personalDetails.dob}</p>
-              <p>Father's Name: {personalDetails.fathersName}</p>
-              <p>Gender: {personalDetails.gender}</p>
-              <p>Language Proficiency: {personalDetails.languageProficiency}</p>
-              <p>Marital Status: {personalDetails.maritalStatus}</p>
-              <p>Nationality: {personalDetails.nationality}</p>
-              <p>Native Place: {personalDetails.placeOfBirth}</p>
+              <p className='ml1'>Date of Birth: {personalDetails.dob}</p>
+              <p className='ml1'>Father's Name: {personalDetails.fathersName}</p>
+              <p className='ml1'> Gender: {personalDetails.gender}</p>
+              <p className='ml1'>Language Proficiency: {personalDetails.languageProficiency}</p>
+              <p className='ml1'>Marital Status: {personalDetails.maritalStatus}</p>
+              <p className='ml1'>Nationality: {personalDetails.nationality}</p>
+              <p className='ml1'>Native Place: {personalDetails.placeOfBirth}</p>
             </div><hr />
 
             <div className="section">
@@ -115,15 +115,15 @@ const Temp1 = () => {
           <div className="right-side">
             <div className="section">
               <h2 className='underline'>Education Details:</h2>
-              <h2>{educationDetails.college.qualification}</h2>
+              <h2 className='edu-head'>{educationDetails.college.qualification}</h2>
               <h3 className='black'> {educationDetails.college.collegeName}</h3>
               <h3 className='black'>{educationDetails.college.cgpa}% - {educationDetails.college.passedOutYear}</h3>
 
-              <h2>SSLC - {educationDetails.tenth.schoolName}</h2>
+              <h2 className='edu-head'>SSLC - {educationDetails.tenth.schoolName}</h2>
               <h3 className='black'>{educationDetails.tenth.board}</h3>
               <h3 className='black'>{educationDetails.tenth.percentage}% - {educationDetails.tenth.passedOutYear}</h3>
 
-              <h2>HSC - {educationDetails.twelfth.schoolName}</h2>
+              <h2 className='edu-head'>HSC - {educationDetails.twelfth.schoolName}</h2>
               <h3 className='black'>{educationDetails.twelfth.board}</h3>
               <h3 className='black'>{educationDetails.twelfth.percentage}% - {educationDetails.twelfth.passedOutYear}</h3>
             </div><hr />
@@ -136,7 +136,7 @@ const Temp1 = () => {
 
               {experience.projects.map((project, index) => (
                 <div key={index}>
-                  <h2>{project.title}</h2>
+                  <h2 className='edu-head'>{project.title}</h2>
                   <p className='line-height'>{project.description}</p>
                 </div>
               ))}<hr />
@@ -148,7 +148,7 @@ const Temp1 = () => {
 
               {experience.experiences.map((exp, index) => (
                 <div key={index}>
-                  <h2>{exp.title}</h2>
+                  <h2 className='edu-head'>{exp.title}</h2>
                   <p className='line-height'>{exp.description}</p>
                 </div>
               ))}
