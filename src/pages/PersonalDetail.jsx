@@ -53,7 +53,6 @@ const PersonalDetails = () => {
       alert('Please fill in all required fields.');
     } else {
       sessionStorage.setItem('personalDetails', JSON.stringify(personalInputs));
-      navigate('/templates');
       const resumeData = {
       studentDetails: JSON.parse(sessionStorage.getItem('studentDetails')),
       educationDetails: JSON.parse(sessionStorage.getItem('educationDetails')),
@@ -62,17 +61,17 @@ const PersonalDetails = () => {
       personalDetails: JSON.parse(sessionStorage.getItem('personalDetails')),
       }
       sessionStorage.setItem('resumeData',JSON.stringify(resumeData ))
-    console.log(resumeData);
+    // console.log(resumeData);
     try {
     const res = await protectInstance.post('/resume/resume-model',  resumeData );
 
     if (res.data) {
-      console.log('Data posted successfully');
-    } else {
-      console.log('Error in data posting');
-    }
+      navigate('/templates');
+      // console.log('Data posted successfully');
+    } 
   } catch (error) {
-    console.error('Error in POST request:', error.message);
+      // console.error('Error in POST request:', error.message);
+      navigate('/')
   }
     }
   };
