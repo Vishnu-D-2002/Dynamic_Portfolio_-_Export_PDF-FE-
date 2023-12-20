@@ -29,14 +29,15 @@
 
 .left-side4 {
     width: 48%;
-    border-right: 1px solid #ddd;
     padding-right: 2%;
     background-color: #333;
     color: whitesmoke;
 }
 
 .right-side4 {
-    background-color: hwb(0 82% 17%);
+    background-color:#333;
+    color: whitesmoke;
+    /* border-right: 1px solid #ddd; */
 }
 
 .resume-container4 {
@@ -48,7 +49,7 @@
 }
 
 .black4 {
-    color: black;
+    color:whitesmoke;
 }
 
 #project4,
@@ -58,8 +59,8 @@
 
 #img4 {
     position: absolute;
-    top: 25px;
-    left: 55px;
+    top: 55px;
+    left: 65px;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(67, 62, 62, 0.1);
 }
@@ -72,7 +73,7 @@
 .underline4 {
     text-decoration: underline;
     text-align: start;
-    color: #3730c2;
+    color: #45c9ee;
 }
 
 .left-side4 h2 {
@@ -98,8 +99,13 @@ strong {
 #top-center4 {
     margin-left: 39%;
     display: block;
+    margin-bottom: 10%;
 }
 
 #phone4 {
     margin-left: 18%;
+}
+
+.ml4{
+    margin-left: 5%;
 }
