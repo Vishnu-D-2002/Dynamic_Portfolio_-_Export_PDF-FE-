@@ -70,13 +70,12 @@ function SignUp() {
                         required
                     />
                 </div>
-
-                <div>
-                    <button type='submit'>REGISTER</button>
-                </div>
                 {
                     <h3>{ msg }</h3>
                 }
+                <div>
+                    <button type='submit'>REGISTER</button>
+                </div> 
 
                 <h2>Already Registered ? <Link to='/'>LOGIN</Link></h2>
             </form>

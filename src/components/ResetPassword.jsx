@@ -15,11 +15,11 @@ function ResetPassword() {
             
             const randomString = window.location.pathname.slice(-7);
 
-            console.log(randomString);
+            // console.log(randomString);
 
             await instance.post('/new-password', { randomString, newPassword });
 
-            console.log('Password changed successfull');
+            // console.log('Password changed successfull');
 
             setNewPassword('');
             navigate('/');

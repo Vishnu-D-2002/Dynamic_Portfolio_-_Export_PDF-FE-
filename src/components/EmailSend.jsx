@@ -13,7 +13,7 @@ function EmailSend() {
 
             const mail = await instance.post('/reset-password', { email });
 
-            console.log('Password Reset Mail send successfully', mail);
+            // console.log('Password Reset Mail send successfully', mail);
 
             setEmail('');
 

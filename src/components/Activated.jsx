@@ -17,7 +17,7 @@ function Activated() {
       const activated = await instance.get(`/activate/${activationToken}`);
 
       if (activated.data.message==='Account Activated Succeessfully') {
-        console.log('Account Activated Successfull');
+        // console.log('Account Activated Successfull');
         navigate('/');
       } else {
         console.log('Error in Account Activation')

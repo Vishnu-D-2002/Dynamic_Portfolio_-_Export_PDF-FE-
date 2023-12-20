@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const StudentDetails = () => {
-  // Retrieve data from session storage on initial rendering
   const initialData = JSON.parse(sessionStorage.getItem('studentDetails')) || {
     firstname: '',
     lastname: '',

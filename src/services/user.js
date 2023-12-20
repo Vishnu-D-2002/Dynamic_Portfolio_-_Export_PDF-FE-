@@ -5,12 +5,12 @@ const userInst = {
     
     signUp: async (user,setMsg) => {
         try {
-            console.log('Registering the User...');
+            // console.log('Registering the User...');
 
             const res = await instance.post('/signup', user);
 
             if (res.data) {
-                console.log('User Registered successfully ', res.data);
+                // console.log('User Registered successfully ', res.data);
             
                 const email = res.data.newUser.email;
                 
@@ -29,13 +29,13 @@ const userInst = {
 
     signIn: async (user,setMsg) => {
         try {
-            console.log('Signing in the User...');
+            // console.log('Signing in the User...');
 
             const res = await instance.post('/signin', user);
 
             if (res.data){ 
                
-                console.log('User login successfull', res.data);
+                // console.log('User login successfull', res.data);
                 
                 sessionStorage.setItem('loggedInUser', JSON.stringify(res.data));
 
