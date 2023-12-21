@@ -71,7 +71,7 @@ const PersonalDetails = () => {
     } 
   } catch (error) {
       // console.error('Error in POST request:', error.message);
-      navigate('/')
+      navigate('/login')
   }
     }
   };
@@ -131,7 +131,7 @@ const PersonalDetails = () => {
           </div>
         ))}
         <button onClick={() => navigate('/experience')}>Previous</button>
-        <button type="submit">Next</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

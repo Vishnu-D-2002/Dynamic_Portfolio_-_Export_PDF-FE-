@@ -5,6 +5,7 @@ import { instance } from '../services/instance';
 function EmailSend() {
 
     const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleMailSend = async (e) => {
         try {
@@ -14,12 +15,13 @@ function EmailSend() {
             const mail = await instance.post('/reset-password', { email });
 
             // console.log('Password Reset Mail send successfully', mail);
-
+            setMessage('Password Reset Mail send successfully');
             setEmail('');
 
         } catch (error) {
 
-            console.error('Error in sending mail', error);
+            // console.error('Error in sending mail', error);
+            setMessage('Error in sending mail');
 
         }
     };
@@ -37,6 +39,7 @@ function EmailSend() {
                   required
               />
               <button type='submit'>SUBMIT</button>
+              {message && <h2 id='activ-msg'>{message}</h2>}
             </form>
       </div>
   )

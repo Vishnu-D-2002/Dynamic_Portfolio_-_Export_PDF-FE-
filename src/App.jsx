@@ -25,9 +25,9 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route path='/' element={ <SignIn /> } />
+            <Route path='/login' element={ <SignIn /> } />
             <Route path='/register' element={<SignUp />} />
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/' element={<Dashboard />} />
             <Route path='/emailSend' element={ <EmailSend /> } />
             <Route path='/resetPassword/:randomString' element={<ResetPassword />} />
             <Route path='/activate/:activationToken' element={<Activated />} />

@@ -77,7 +77,7 @@ function SignUp() {
                     <button type='submit'>REGISTER</button>
                 </div> 
 
-                <h2>Already Registered ? <Link to='/'>LOGIN</Link></h2>
+                <h2>Already Registered ? <Link to='/login'>LOGIN</Link></h2>
             </form>
         </div>
     );

@@ -22,7 +22,7 @@ function ResetPassword() {
             // console.log('Password changed successfull');
 
             setNewPassword('');
-            navigate('/');
+            navigate('/login');
 
         } catch (error) {
             console.error('Error is Changing Password :', error);

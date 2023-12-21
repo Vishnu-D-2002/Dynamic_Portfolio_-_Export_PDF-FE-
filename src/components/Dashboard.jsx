@@ -27,7 +27,7 @@ function Dashboard() {
         <h2 className='dash-head'>1. Register and Login</h2>
         <ol>
           <li className='left-align'> Visit our website and click on the "Register" button.</li>
-          <li className='left-align'>Fill in your details to create an account. Ensure your password is secure.</li>
+          <li className='left-align'> Fill in your details to create an account. Ensure your password is secure.</li>
           <li className='left-align'>Once registered, use your credentials to log in.</li>
         </ol>
 
@@ -57,13 +57,15 @@ function Dashboard() {
           <li className='left-align'> Congratulations! Your professional resume is ready for use.</li>
         </ol>
 
-        <h2 className='dash-head'>Important Notes:</h2>
+        <div id='Impnote'>
+           <h2 className='dash-head' >Important Notes</h2>
         <ul>
           <li className='left-align'>Your information is securely stored and accessible only to you.</li>
         </ul>
 
         <p className='left-align'>Thank you for choosing our resume builder! We're here to help you create a compelling and effective resume for your career journey. If you have any questions or feedback, feel free to reach out to our support team.</p>
 
+       </div>
       </div>
 
       <div id='createResume'>

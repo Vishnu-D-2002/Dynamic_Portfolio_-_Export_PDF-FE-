@@ -29,7 +29,7 @@ function signIn() {
             setMsg('Entered a Wrong Email or Password');
         } else {
         
-            navigate('/dashboard');
+            navigate('/');
         }
     };
 
