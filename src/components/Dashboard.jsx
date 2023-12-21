@@ -14,8 +14,20 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('loggedInUser')
+    navigate('/login');
+  }
+
   return (
     <div className="dashboard-container">
+
+      <div className="auth-buttons">
+        <button onClick={() => navigate('/register')}>Register</button>
+        <button onClick={() => navigate('/login')}>Login</button>
+        <button onClick={handleLogout}>Logout</button>
+      </div><br />
+
       <h1 id="dashboard-title">Resume Builder Dashboard</h1>
 
       <div className="dashboard-info">

@@ -320,7 +320,13 @@ form {
 }
 
 #dashboard-title {
-    margin-top: 0;
+    margin-top: 10%;
+}
+
+@media (min-width:1200px){
+    #dashboard-title {
+            margin-top: 3%;
+        }
 }
 
 .dash-head {
@@ -399,6 +405,29 @@ form {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.auth-buttons button {
+    margin-left: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-buttons button:hover {
+    background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
