@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import userInst from '../services/user';
+import { ColorRing } from 'react-loader-spinner';
 
 function SignUp() {
     const [registerForm, setRegisterForm] = useState({
@@ -12,11 +13,16 @@ function SignUp() {
     });
 
     const [msg, setMsg] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleForm = (e) => {
+    const handleForm = async (e) => {
         e.preventDefault();
 
-        userInst.signUp(registerForm,setMsg);
+        setLoading(true); 
+
+        await userInst.signUp(registerForm,setMsg);
+        
+        setLoading(false);
         
         setRegisterForm({
             firstName: '',
@@ -70,6 +76,19 @@ function SignUp() {
                         required
                     />
                 </div>
+                {loading && (
+                    <div id='ring'>
+                        <ColorRing
+                            visible={true}
+                            height="80"
+                            width="80"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={['#abbd81', '#f8b26a', '#849b87', '#e15b64', '#f47e60']}
+                        />
+                    </div>
+                )}
                 {
                     <h3>{ msg }</h3>
                 }
