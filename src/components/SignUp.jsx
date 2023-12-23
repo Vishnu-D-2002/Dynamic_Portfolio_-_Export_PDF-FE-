@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import userInst from '../services/user';
 import { ColorRing } from 'react-loader-spinner';
+import NavBar from './NavBar';
 
 function SignUp() {
     const [registerForm, setRegisterForm] = useState({
@@ -35,6 +36,7 @@ function SignUp() {
 
     return (
         <div>
+            <NavBar />
             <form onSubmit={handleForm}>
                 <h1>Register </h1>
                 <div>
@@ -76,25 +78,24 @@ function SignUp() {
                         required
                     />
                 </div>
-                {loading && (
-                    <div id='ring'>
-                        <ColorRing
+                {
+                    <h3>{msg}</h3>
+                }
+                <div>
+                    {loading ? (
+                        <button type="submit">REGISTER <ColorRing
                             visible={true}
-                            height="80"
-                            width="80"
+                            height="40"
+                            width="40"
                             ariaLabel="color-ring-loading"
                             wrapperStyle={{}}
                             wrapperClass="color-ring-wrapper"
                             colors={['#abbd81', '#f8b26a', '#849b87', '#e15b64', '#f47e60']}
-                        />
-                    </div>
-                )}
-                {
-                    <h3>{ msg }</h3>
-                }
-                <div>
-                    <button type='submit'>REGISTER</button>
-                </div> 
+                        /></button>
+                    ) : (
+                        <button type="submit">REGISTER</button>
+                    )}
+                </div>
 
                 <h2>Already Registered ? <Link to='/login'>LOGIN</Link></h2>
             </form>

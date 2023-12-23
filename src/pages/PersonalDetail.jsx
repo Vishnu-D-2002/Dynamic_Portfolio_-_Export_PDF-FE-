@@ -2,8 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { protectInstance } from '../services/instance';
 import NavBar from '../components/NavBar';
+import { ColorRing } from 'react-loader-spinner';
 
 const PersonalDetails = () => {
+
+  const [loading, setLoading] = useState(false);
+
   const initialData = JSON.parse(sessionStorage.getItem('personalDetails')) || {
     fathersName: '',
     dob: '',
@@ -46,6 +50,7 @@ const PersonalDetails = () => {
 
   const handlePersonalSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const requiredFields = Object.keys(personalInputs);
     const hasEmptyRequiredFields = requiredFields.some(field => !personalInputs[field]);
@@ -66,7 +71,8 @@ const PersonalDetails = () => {
     try {
     const res = await protectInstance.post('/resume/resume-model',  resumeData );
 
-    if (res.data) {
+      if (res.data) {
+      setLoading(false);
       navigate('/templates');
       // console.log('Data posted successfully');
     } 
@@ -133,7 +139,21 @@ const PersonalDetails = () => {
           </div>
         ))}
         <button onClick={() => navigate('/experience')}>Previous</button>
-        <button type="submit">Submit</button>
+        <div id='centr'>
+          {loading ? (
+            <button type="submit">Submit <ColorRing
+                            visible={true}
+                            height="40"
+                            width="40"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={['#abbd81', '#f8b26a', '#849b87', '#e15b64', '#f47e60']}
+                        /></button>
+        ) : (
+          <button type="submit">Submit</button>
+        )}
+        </div>
       </form>
     </div>
   );
