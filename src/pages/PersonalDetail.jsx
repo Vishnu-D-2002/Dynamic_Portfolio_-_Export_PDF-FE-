@@ -141,7 +141,7 @@ const PersonalDetails = () => {
         <button onClick={() => navigate('/experience')}>Previous</button>
         <div id='centr'>
           {loading ? (
-            <button type="submit">Submit <ColorRing
+            <button type="submit"><ColorRing
                             visible={true}
                             height="40"
                             width="40"

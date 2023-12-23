@@ -67,7 +67,7 @@ function SignIn() {
                
                 <div>
                     {loading ? (
-                        <button type="submit">Login <ColorRing
+                        <button type="submit"><ColorRing
                             visible={true}
                             height="40"
                             width="40"

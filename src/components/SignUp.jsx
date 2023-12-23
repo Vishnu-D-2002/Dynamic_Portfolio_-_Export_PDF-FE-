@@ -83,7 +83,7 @@ function SignUp() {
                 }
                 <div>
                     {loading ? (
-                        <button type="submit">REGISTER <ColorRing
+                        <button type="submit"><ColorRing
                             visible={true}
                             height="40"
                             width="40"
