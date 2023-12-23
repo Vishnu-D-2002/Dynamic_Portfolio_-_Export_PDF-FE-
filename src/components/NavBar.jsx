@@ -40,7 +40,7 @@ function NavBar() {
           </li>
           <li>
             <NavLink
-              to='/login'
+              to='/'
               onClick={() => {
                 sessionStorage.removeItem('loggedInUser');
               }}
