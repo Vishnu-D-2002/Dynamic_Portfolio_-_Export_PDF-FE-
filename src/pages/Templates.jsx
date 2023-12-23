@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Templates.css';
+import NavBar from '../components/NavBar';
 
 function Templates() {
   return (
     <div>
+      <NavBar />
       <h1 id='templates'>CHOOSE ANY TEMPLATE</h1>
       <p className="subtext">Stand out from the crowd with a professionally designed resume. Pick a template that suits your style and impress recruiters!</p>
       <div className="template-links">

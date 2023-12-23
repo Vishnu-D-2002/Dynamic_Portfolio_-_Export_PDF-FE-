@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 
 function Dashboard() {
   
@@ -21,12 +22,12 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-
-      <div className="auth-buttons">
+      <NavBar />
+      {/* <div className="auth-buttons">
         <button onClick={() => navigate('/register')}>Register</button>
         <button onClick={() => navigate('/login')}>Login</button>
         <button onClick={handleLogout}>Logout</button>
-      </div><br />
+      </div><br /> */}
 
       <h1 id="dashboard-title">Resume Builder Dashboard</h1>
 
@@ -116,7 +117,7 @@ function Dashboard() {
         <p>Thank you for choosing our Resume Builder. We're here to assist you in creating a professional and impactful resume for your career success!</p>
       </div>
 
-      <div>
+      <div className='contact-support'>
         <h2 className='dash-head'>Contact Support</h2>
         <p>If you have any questions or need assistance, feel free to contact our support team. We're here to help!</p>
         <a href='mailto:vishnulosangels@gmail.com' target="_blank">Email</a>

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const Experience = () => {
   const initialExperience = { title: '', description: '' };
@@ -64,6 +65,7 @@ const Experience = () => {
 
   return (
     <div>
+      <NavBar />
       <form onSubmit={handleSubmit}>
         <h1>Experience</h1>
         {experiences.map((exp, index) => (

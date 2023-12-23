@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const Additional = () => {
   const initialData = JSON.parse(sessionStorage.getItem('additionalDetails')) || {
@@ -46,7 +47,9 @@ const Additional = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+      <NavBar />
+      <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor='skills'>Programming Languages *</label>
         {[...Array(5)].map((_, index) => (
@@ -112,6 +115,7 @@ const Additional = () => {
       <button onClick={() => navigate('/education')}>Previous</button>
       <button type="submit">Next</button>
     </form>
+    </div>
   );
 };
 

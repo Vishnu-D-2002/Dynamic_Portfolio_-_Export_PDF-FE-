@@ -323,6 +323,12 @@ form {
     margin-top: 10%;
 }
 
+#Navbar-title{
+    margin-top: 4%;
+    color: whitesmoke;
+    font-size: xx-large;
+}
+
 @media (min-width:1200px){
     #dashboard-title {
             margin-top: 3%;
@@ -376,11 +382,16 @@ form {
 
 .recent-activities li {
     margin-bottom: 10px;
+    font-size: large;
 }
 
 .related-content ul {
     list-style-type: none;
     padding: 0;
+}
+
+.related-content li{
+    position: static;
 }
 
 .related-content a {
@@ -393,6 +404,8 @@ form {
     color: #007bff;
     text-decoration: none;
     margin-right: 10px;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 #Impnote{
@@ -442,4 +455,109 @@ form {
     align-items: center;
     height: 100px;
     margin-bottom: 20px;
+}
+
+#checkbox {
+    display: none;
+}
+
+.toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition-duration: .3s;
+}
+
+.bars {
+    width: 100%;
+    height: 4px;
+    background-color: rgb(253, 255, 243);
+    border-radius: 5px;
+    transition-duration: .3s;
+}
+
+#checkbox:checked+.toggle #bar2 {
+    transform: translateY(14px) rotate(60deg);
+    margin-left: 0;
+    transform-origin: right;
+    transition-duration: .3s;
+    z-index: 2;
+}
+
+#checkbox:checked+.toggle #bar1 {
+    transform: translateY(28px) rotate(-60deg);
+    transition-duration: .3s;
+    transform-origin: left;
+    z-index: 1;
+}
+
+#checkbox:checked+.toggle {
+    transform: rotate(-90deg);
+}
+
+#navbar li{
+    display: inline-block;
+}
+
+#navbar{
+    position: relative;
+}
+
+@media (min-width: 768px) {
+
+    #checkbox,
+    .toggle,
+    .bars {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #navbar li {
+        display: none;
+    }
+
+    #right {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+    }
+
+    #navbar ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 99px;
+        right: 0;
+        width: 40%;
+        z-index: 1;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #navbar ul.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #navbar ul.show li {
+        display: block;
+    }
+
+    #navbar ul li {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #555;
+        display: none;
+    }
 }

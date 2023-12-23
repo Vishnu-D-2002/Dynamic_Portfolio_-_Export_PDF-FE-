@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const Education = () => {
   const initialData = JSON.parse(sessionStorage.getItem('educationDetails')) || {
@@ -47,7 +48,9 @@ const Education = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+      <NavBar />
+      <form onSubmit={handleSubmit}>
       <div>
         <h1>College Details</h1>
         {Object.entries(educationDetails.college).map(([field, value], index) => (
@@ -93,6 +96,7 @@ const Education = () => {
       <button onClick={() => navigate('/student')}>Previous</button>
       <button type="submit">Next</button>
     </form>
+    </div>
   );
 };
 

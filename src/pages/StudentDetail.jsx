@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const StudentDetails = () => {
   const initialData = JSON.parse(sessionStorage.getItem('studentDetails')) || {
@@ -64,6 +65,7 @@ const StudentDetails = () => {
 
   return (
     <div>
+      <NavBar />
       <form onSubmit={handleSubmit}>
         <h1>Student Details</h1>
         {Object.keys(inputs).map((inputName, index) => (
