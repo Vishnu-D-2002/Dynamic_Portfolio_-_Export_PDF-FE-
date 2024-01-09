@@ -19,27 +19,25 @@ const Education = () => {
     }
   }, []);
 
- const handleInputChange = (section, field, value) => {
-  let validatedValue = value;
+  const handleInputChange = (section, field, value) => {
+    let validatedValue = value;
 
-  if ((field === 'cgpa' || field === 'percentage' || field === 'passedOutYear') && value.length > 0) {
-    if ((field === 'cgpa' || field === 'percentage') && !/^\d{0,2}$/.test(value)) {
-      return;
+    if (field === 'percentage' || field === 'cgpa' || field === 'passedOutYear') {
+
+      validatedValue = value.replace(/\D/g, '');
+
+      if (field === 'percentage' || field === 'cgpa') {
+        validatedValue = validatedValue.slice(0, 2);
+      } else if (field === 'passedOutYear') {
+        validatedValue = validatedValue.slice(0, 4);
+      }
     }
 
-    if (field === 'passedOutYear' && !/^\d{0,4}$/.test(value)) {
-      return;
-    }
-
-    validatedValue = value.slice(0, field === 'percentage' ? 2 : 4);
-  }
-
-  setEducationDetails((prevDetails) => ({
-    ...prevDetails,
-    [section]: { ...prevDetails[section], [field]: validatedValue },
-  }));
-};
-
+    setEducationDetails((prevDetails) => ({
+      ...prevDetails,
+      [section]: { ...prevDetails[section], [field]: validatedValue },
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,51 +49,54 @@ const Education = () => {
     <div>
       <NavBar />
       <form onSubmit={handleSubmit}>
-      <div>
-        <h1>College Details</h1>
-        {Object.entries(educationDetails.college).map(([field, value], index) => (
-          <input
-            key={index}
-            type={field === 'cgpa' || field === 'percentage' || field === 'passedOutYear' ? 'number' : 'text'}
-            placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-            value={value}
-            onChange={(e) => handleInputChange('college', field, e.target.value)}
-            required
-            ref={index === 0 ? collegeRef : null}
-          />
-        ))}
-      </div>
+        <div>
+          <h1>College Details</h1>
+          {Object.entries(educationDetails.college).map(([field, value], index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              value={value}
+              onChange={(e) => handleInputChange('college', field, e.target.value)}
+              minLength={index==2?2:index==3?4:0}
+              required
+              ref={index === 0 ? collegeRef : null}
+            />
+          ))}
+        </div>
 
-      <div>
-        <h1>12th Grade Details</h1>
-        {Object.entries(educationDetails.twelfth).map(([field, value], index) => (
-          <input
-            key={index}
-            type={field === 'percentage' || field === 'passedOutYear' ? 'number' : 'text'}
-            placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-            value={value}
-            onChange={(e) => handleInputChange('twelfth', field, e.target.value)}
-            required
-          />
-        ))}
-      </div>
+        <div>
+          <h1>12th Grade Details</h1>
+          {Object.entries(educationDetails.twelfth).map(([field, value], index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              value={value}
+              onChange={(e) => handleInputChange('twelfth', field, e.target.value)}
+              minLength={index==2?2:index==3?4:0}
+              required
+            />
+          ))}
+        </div>
 
-      <div>
-        <h1>10th Grade Details</h1>
-        {Object.entries(educationDetails.tenth).map(([field, value], index) => (
-          <input
-            key={index}
-            type={field === 'percentage' || field === 'passedOutYear' ? 'number' : 'text'}
-            placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-            value={value}
-            onChange={(e) => handleInputChange('tenth', field, e.target.value)}
-            required
-          />
-        ))}
-      </div>
-      <button onClick={() => navigate('/student')}>Previous</button>
-      <button type="submit">Next</button>
-    </form>
+        <div>
+          <h1>10th Grade Details</h1>
+          {Object.entries(educationDetails.tenth).map(([field, value], index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              value={value}
+              onChange={(e) => handleInputChange('tenth', field, e.target.value)}
+              minLength={index==2?2:index==3?4:0}
+              required
+            />
+          ))}
+        </div>
+        <button onClick={() => navigate('/student')}>Previous</button>
+        <button type="submit">Next</button>
+      </form>
     </div>
   );
 };
