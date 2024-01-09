@@ -108,7 +108,7 @@ const PersonalDetails = () => {
                 onChange={handlePersonalInputChange}
                 required
               >
-                <option value="" disabled>Select Gender</option>
+                <option value="" disabled>Select Gender *</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
@@ -120,7 +120,7 @@ const PersonalDetails = () => {
                 onChange={handlePersonalInputChange}
                 required
               >
-                <option value="" disabled>Select Marital Status</option>
+                <option value="" disabled>Select Marital Status *</option>
                 <option value="single">Single</option>
                 <option value="married">Married</option>
               </select>
