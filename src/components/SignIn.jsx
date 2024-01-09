@@ -4,6 +4,7 @@ import '../App.css';
 import userInst from '../services/user';
 import { ColorRing } from 'react-loader-spinner';
 import NavBar from './NavBar';
+import { protectInstance } from '../services/instance';
 
 function SignIn() {
     const [loginForm, setLoginForm] = useState({
@@ -18,7 +19,7 @@ function SignIn() {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        setLoading(true); 
+        setLoading(true);
 
         const user = await userInst.signIn(loginForm, setMsg);
 
@@ -29,12 +30,27 @@ function SignIn() {
             password: ''
         });
 
+        let resumeData = JSON.parse(sessionStorage.getItem('resumeData'));
+        
+        let personalDetails = JSON.parse(sessionStorage.getItem('personalDetails'));
+        
+        if (personalDetails) {
+            setLoading(true);
+
+            const res = await protectInstance.post('/resume/resume-model', resumeData);
+
+            if (res.data) {
+                setLoading(false);
+                navigate('/templates');
+            }
+        }
+        else{
         if (!user) {
             sessionStorage.removeItem('loggedInUser');
             setMsg('Entered a Wrong Email or Password');
         } else {
             navigate('/');
-        }
+        }}
     };
 
     return (

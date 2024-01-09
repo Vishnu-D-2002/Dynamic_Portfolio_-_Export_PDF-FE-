@@ -43,6 +43,11 @@ const StudentDetails = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'phonenumber') {
+      if (!/^\d+$/.test(value)) {
+        return;
+      }
+    }
     setInputs((prevInputs) => ({
       ...prevInputs,
       [name]: value,
@@ -71,13 +76,14 @@ const StudentDetails = () => {
         {Object.keys(inputs).map((inputName, index) => (
           <div key={index}>
             <input
-              type="text"
+              type={index==2?"email":"text"}
               id={inputName}
               name={inputName}
               placeholder={placeholder[index]}
               value={inputs[inputName]}
               onChange={handleInputChange}
               required={index < 5}
+              minLength={index==3?10:0}
               ref={index === 0 ? firstNameRef : null}
             />
           </div>

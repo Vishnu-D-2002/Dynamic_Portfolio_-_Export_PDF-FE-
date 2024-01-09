@@ -13,6 +13,8 @@ function NavBar() {
     setMenu(false);
   };
 
+  let loggedInUser = sessionStorage.getItem('loggedInUser');
+
   return (
     <div id='navbar'>
       <nav>
@@ -28,26 +30,42 @@ function NavBar() {
               Create Resume
             </NavLink>
           </li>
-          <li>
+
+          {
+            (!loggedInUser) && (
+              <li>
             <NavLink to='/register' onClick={closeMenu}>
               Register
             </NavLink>
           </li>
-          <li>
+            )
+          }
+          
+          {
+            (!loggedInUser)  && (
+              <li>
             <NavLink to='/login' onClick={closeMenu}>
               Login
             </NavLink>
           </li>
-          <li>
+            )
+          }
+
+          {
+            (loggedInUser) && (
+              <li>
             <NavLink
               to='/'
               onClick={() => {
                 sessionStorage.removeItem('loggedInUser');
+                sessionStorage.clear();
               }}
             >
                LogOut           
             </NavLink>
           </li>
+            )
+          }
         </ul>
         <div id='right'>
           <input id="checkbox" type="checkbox" onChange={toggleMenu} checked={menu} />
